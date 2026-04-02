@@ -72,37 +72,35 @@
       <button onclick="handleLogin()" class="w-full btn-primary text-white py-3 rounded-xl font-medium shadow-lg shadow-sky-500/30"> เข้าสู่ระบบ </button>
       <p class="text-center mt-4 text-gray-500">ยังไม่มีบัญชี? <button onclick="showRegister()" class="text-sky-600 font-medium hover:underline">สมัครสมาชิก</button></p>
      </div>
-     <div id="registerForm" class="hidden">
-    <div class="grid grid-cols-2 gap-3 mb-3">
-        <div><label class="block text-xs font-medium mb-1">ชื่อ <span class="text-red-500">*</span></label> <input type="text" id="regFirstName" class="w-full px-3 py-2 border rounded-xl outline-none text-sm" placeholder="ชื่อ"></div>
-        <div><label class="block text-xs font-medium mb-1">นามสกุล <span class="text-red-500">*</span></label> <input type="text" id="regLastName" class="w-full px-3 py-2 border rounded-xl outline-none text-sm" placeholder="นามสกุล"></div>
+     <div id="registerForm" class="hidden animate-fadeIn">
+    <div class="grid grid-cols-2 gap-2 mb-2">
+        <div><label class="block text-[11px] font-medium mb-0.5 text-gray-600">ชื่อ <span class="text-red-500">*</span></label> <input type="text" id="regFirstName" class="w-full px-3 py-1.5 border rounded-lg outline-none text-sm focus:ring-1 focus:ring-sky-500" placeholder="ชื่อ"></div>
+        <div><label class="block text-[11px] font-medium mb-0.5 text-gray-600">นามสกุล <span class="text-red-500">*</span></label> <input type="text" id="regLastName" class="w-full px-3 py-1.5 border rounded-lg outline-none text-sm focus:ring-1 focus:ring-sky-500" placeholder="นามสกุล"></div>
     </div>
-    <div class="grid grid-cols-2 gap-3 mb-3">
-        <div><label class="block text-xs font-medium mb-1">Email</label> <input type="email" id="regEmail" class="w-full px-3 py-2 border rounded-xl outline-none text-sm" placeholder="Email"></div>
-        <div><label class="block text-xs font-medium mb-1">เบอร์โทรศัพท์</label> <input type="tel" id="regPhone" class="w-full px-3 py-2 border rounded-xl outline-none text-sm" placeholder="08x-xxxxxxx"></div>
+    <div class="grid grid-cols-2 gap-2 mb-2">
+        <div><label class="block text-[11px] font-medium mb-0.5 text-gray-600">Email</label> <input type="email" id="regEmail" class="w-full px-3 py-1.5 border rounded-lg outline-none text-sm focus:ring-1 focus:ring-sky-500" placeholder="อีเมล"></div>
+        <div><label class="block text-[11px] font-medium mb-0.5 text-gray-600">เบอร์โทรศัพท์</label> <input type="tel" id="regPhone" class="w-full px-3 py-1.5 border rounded-lg outline-none text-sm focus:ring-1 focus:ring-sky-500" placeholder="08x-xxxxxxx"></div>
     </div>
-    <div class="mb-3">
-        <label class="block text-xs font-medium mb-1">สถานศึกษา/หน่วยงาน <span class="text-red-500">*</span></label> 
-        <input type="text" id="regOrganization" class="w-full px-3 py-2 border rounded-xl outline-none text-sm" placeholder="ระบุชื่อสถานศึกษา">
+    <div class="mb-2">
+        <label class="block text-[11px] font-medium mb-0.5 text-gray-600">สถานศึกษา/หน่วยงาน <span class="text-red-500">*</span></label> 
+        <input type="text" id="regOrganization" class="w-full px-3 py-1.5 border rounded-lg outline-none text-sm focus:ring-1 focus:ring-sky-500" placeholder="ระบุชื่อสถานศึกษา">
     </div>
-    <div class="grid grid-cols-2 gap-3 mb-4">
-        <div><label class="block text-xs font-medium mb-1">ชื่อผู้ใช้ <span class="text-red-500">*</span></label> <input type="text" id="regUsername" class="w-full px-3 py-2 border rounded-xl outline-none text-sm" placeholder="Username"></div>
-        <div><label class="block text-xs font-medium mb-1">รหัสผ่าน <span class="text-red-500">*</span></label> <input type="password" id="regPassword" class="w-full px-3 py-2 border rounded-xl outline-none text-sm" placeholder="6 ตัวขึ้นไป"></div>
+    <div class="grid grid-cols-2 gap-2 mb-3">
+        <div><label class="block text-[11px] font-medium mb-0.5 text-gray-600">ชื่อผู้ใช้ <span class="text-red-500">*</span></label> <input type="text" id="regUsername" class="w-full px-3 py-1.5 border rounded-lg outline-none text-sm focus:ring-1 focus:ring-sky-500" placeholder="Username"></div>
+        <div><label class="block text-[11px] font-medium mb-0.5 text-gray-600">รหัสผ่าน <span class="text-red-500">*</span></label> <input type="password" id="regPassword" class="w-full px-3 py-1.5 border rounded-lg outline-none text-sm focus:ring-1 focus:ring-sky-500" placeholder="6 ตัวขึ้นไป"></div>
     </div>
     
-    <!-- ส่วน PDPA Checkbox -->
-    <div class="mb-5 p-3 bg-sky-50 rounded-xl border border-sky-100">
-        <label class="flex items-start gap-2 cursor-pointer">
-            <input type="checkbox" id="regPdpa" class="mt-1 w-4 h-4 text-sky-600 rounded">
-            <span class="text-xs text-gray-700 leading-tight">
-                ข้าพเจ้ายอมรับและยินยอมให้ระบบจัดเก็บข้อมูลส่วนบุคคลตาม 
-                <button type="button" onclick="showFullPdpa()" class="text-sky-600 font-bold underline">นโยบาย PDPA</button> ของหน่วยงาน
+    <div class="mb-4 p-2 bg-sky-50 rounded-lg border border-sky-100">
+        <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="regPdpa" class="w-4 h-4 text-sky-600 rounded">
+            <span class="text-[11px] text-gray-700 leading-tight">
+                ยินยอมให้ระบบจัดเก็บข้อมูลตาม <button type="button" onclick="showFullPdpa()" class="text-sky-600 font-bold underline">นโยบาย PDPA</button>
             </span>
         </label>
     </div>
 
-    <button onclick="handleRegister()" class="w-full btn-primary text-white py-3 rounded-xl font-medium shadow-lg shadow-sky-500/30"> สมัครสมาชิก </button>
-    <p class="text-center mt-3 text-sm text-gray-500">มีบัญชีแล้ว? <button onclick="showLogin()" class="text-sky-600 font-medium hover:underline">เข้าสู่ระบบ</button></p>
+    <button onclick="handleRegister()" class="w-full btn-primary text-white py-2.5 rounded-xl font-medium shadow-lg"> สมัครสมาชิก </button>
+    <p class="text-center mt-3 text-xs text-gray-500">มีบัญชีแล้ว? <button onclick="showLogin()" class="text-sky-600 font-medium hover:underline">เข้าสู่ระบบ</button></p>
 </div>
     </div>
    </div>
@@ -555,15 +553,18 @@
 	  <div id="pdpaModal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closePdpaModal()"></div>
     <div class="relative bg-white rounded-2xl w-full max-w-lg flex flex-col shadow-2xl animate-fadeIn max-h-[80vh]">
-        <div class="p-5 border-b flex justify-between items-center bg-gray-50 rounded-t-2xl">
-            <h3 class="font-bold text-gray-800 flex items-center gap-2"><i data-lucide="shield-check" class="text-sky-600"></i> นโยบายคุ้มครองข้อมูลส่วนบุคคล (PDPA)</h3>
-            <button onclick="closePdpaModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x"></i></button>
+        <div class="p-4 border-b flex justify-between items-center bg-gray-50 rounded-t-2xl">
+            <h3 class="font-bold text-gray-800 flex items-center gap-2 text-sm sm:text-base"><i data-lucide="shield-check" class="text-sky-600"></i> นโยบายคุ้มครองข้อมูลส่วนบุคคล (PDPA)</h3>
+            <button onclick="closePdpaModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x" class="w-5 h-5"></i></button>
         </div>
         <div class="p-6 overflow-y-auto text-sm text-gray-600 leading-relaxed" id="pdpaFullContent">
-            <!-- ข้อความจากตั้งค่าจะมาแสดงที่นี่ -->
+            <!-- ข้อความจากตั้งค่า -->
         </div>
-        <div class="p-4 border-t bg-gray-50 rounded-b-2xl flex justify-center">
-            <button onclick="closePdpaModal()" class="px-8 py-2 btn-primary text-white rounded-lg shadow font-medium">รับทราบ</button>
+        <div class="p-4 border-t bg-gray-50 rounded-b-2xl flex justify-end gap-3">
+            <button onclick="closePdpaModal()" class="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-700 transition">ปิด</button>
+            <button onclick="acceptPdpa()" class="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg shadow-md font-medium text-sm transition flex items-center gap-2">
+                <i data-lucide="check" class="w-4 h-4"></i> ยอมรับนโยบาย
+            </button>
         </div>
     </div>
 </div>
@@ -596,9 +597,18 @@
 // เพิ่ม pdpaText: 'ข้อความเริ่มต้น...' ลงใน systemSettings ที่ประกาศไว้ตอนแรกด้วยครับ
 if (!systemSettings.pdpaText) systemSettings.pdpaText = "นโยบายคุ้มครองข้อมูลส่วนบุคคล...";
 
+	function acceptPdpa() {
+    const cb = document.getElementById('regPdpa');
+    if (cb) cb.checked = true; // ติ๊กถูกที่ Checkbox หน้าสมัคร
+    closePdpaModal(); // ปิดหน้าต่าง
+    showToast('ยอมรับเงื่อนไขแล้ว', 'success');
+}
 // 1. ฟังก์ชันแสดง Modal PDPA
 function showFullPdpa() {
-    document.getElementById('pdpaFullContent').innerHTML = systemSettings.pdpaText.replace(/\n/g, '<br>');
+    const content = document.getElementById('pdpaFullContent');
+    // ถ้ายังไม่มีข้อความในระบบ ให้แสดงข้อความพื้นฐาน
+    const text = systemSettings.pdpaText || "นโยบายการคุ้มครองข้อมูลส่วนบุคคล (PDPA)...";
+    content.innerHTML = text.replace(/\n/g, '<br>');
     document.getElementById('pdpaModal').classList.remove('hidden');
     lucide.createIcons();
 }
@@ -821,10 +831,10 @@ function closePdpaModal() {
         else showToast('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง','error'); 
     }
 
-    async function handleRegister(){ 
+   async function handleRegister(){ 
     const isPdpaChecked = document.getElementById('regPdpa').checked;
     if(!isPdpaChecked) {
-        return showAlert('ยินยอมเงื่อนไข', 'กรุณากดติ๊กยอมรับนโยบาย PDPA ก่อนสมัครสมาชิก', 'warning');
+        return showAlert('ยินยอมเงื่อนไข', 'กรุณากดยอมรับนโยบาย PDPA ก่อนสมัครสมาชิก โดยคลิกที่ "นโยบาย PDPA" เพื่ออ่านและกดยอมรับครับ', 'warning');
     }
 
     const d={
@@ -836,23 +846,27 @@ function closePdpaModal() {
         username:document.getElementById('regUsername').value.trim(),
         password:document.getElementById('regPassword').value,
         role:'user',
-        pdpaConsent: 'Accepted: ' + new Date().toLocaleString('th-TH') // เก็บวันเวลาที่กดยอมรับ
+        pdpaConsent: 'Accepted: ' + new Date().toLocaleString('th-TH')
     }; 
 
-    if(!d.firstName||!d.lastName||!d.username||!d.password||!d.organization) return showToast('กรอกข้อมูลที่จำเป็นให้ครบถ้วน','error'); 
-    if(d.password.length < 6) return showToast('รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร','error');
+    if(!d.firstName||!d.lastName||!d.username||!d.password||!d.organization) return showToast('กรุณากรอกข้อมูล * ให้ครบถ้วน','error'); 
+    if(d.password.length < 6) return showToast('รหัสผ่านต้องมี 6 ตัวขึ้นไป','error');
 
     showLoader("กำลังสร้างบัญชี...");
-    const users=await apiCall('getUsers'); 
-    if(users.find(x=>x.username===d.username)) {
-        hideLoader();
-        return showToast('ชื่อผู้ใช้นี้มีอยู่แล้วในระบบ','error'); 
-    }
+    try {
+        const users = await apiCall('getUsers'); 
+        if(users.find(x=>x.username === d.username)) {
+            hideLoader();
+            return showToast('ชื่อผู้ใช้นี้มีผู้ใช้งานแล้ว','error'); 
+        }
 
-    await apiCall('addUser',d); 
-    hideLoader();
-    showAlert('สมัครสำเร็จ', 'สร้างบัญชีผู้ใช้เรียบร้อยแล้ว ท่านสามารถเข้าสู่ระบบได้ทันที', 'success');
-    showLogin(); 
+        await apiCall('addUser',d); 
+        hideLoader();
+        showAlert('สมัครสมาชิกสำเร็จ', 'บัญชีของท่านพร้อมใช้งานแล้ว สามารถเข้าสู่ระบบได้ทันที', 'success');
+        showLogin(); 
+    } catch (e) {
+        hideLoader();
+    }
 }
 
     function handleLogout(){ 
