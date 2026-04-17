@@ -709,21 +709,24 @@ let botSettings = {
 
 // 1. ฟังก์ชันเปิด/ปิดแชท
 function toggleChat() {
-    const window = document.getElementById('chatWindow');
-    const greeting = document.getElementById('botGreetingBubble');
+    const chatWin = document.getElementById('chatWindow');
+    const badge = document.getElementById('botBadgeCallout');
     isChatOpen = !isChatOpen;
     
     if (isChatOpen) {
-        window.classList.remove('hidden');
-        greeting.classList.add('hidden');
+        chatWin.classList.remove('hidden');
+        if(badge) badge.classList.add('hidden'); // ซ่อนป้าย Badge เมื่อเปิดแชท
         unreadCount = 0;
         updateBotBadge();
-        // ถ้าเป็นการเปิดครั้งแรก ให้ทักทาย
-        if(document.getElementById('chatMessages').children.length === 0) {
-            setTimeout(botGreeting, 500);
+
+        // --- จุดสำคัญ: ถ้าเปิดแชทมาแล้วยังไม่มีข้อความ ให้บอททักทันที ---
+        const messageContainer = document.getElementById('chatMessages');
+        if (messageContainer.children.length === 0) {
+            setTimeout(botGreeting, 500); // เรียกฟังก์ชันทักทาย
         }
     } else {
-        window.classList.add('hidden');
+        chatWin.classList.add('hidden');
+        if(badge) badge.classList.remove('hidden');
     }
 }
 
@@ -792,22 +795,7 @@ function handleBotLogic(msg) {
         buttons = ['เช็ควันว่าง', 'จองยังไง?'];
     }
 	// --- Logic: สถานะการจอง ---
-    else if (text.includes('สถานะ') || text.includes('งานของฉัน')) {
-        if (!currentUser) {
-            reply = "กรุณาเข้าสู่ระบบก่อนเพื่อเช็คสถานะการจองของคุณครับ";
-        } else {
-            const myBookings = allBookings.filter(b => b.userId === currentUser.id);
-            if (myBookings.length === 0) {
-                reply = "คุณยังไม่มีรายการจองในระบบครับ";
-            } else {
-                const last = myBookings[myBookings.length - 1];
-                const statusTh = last.status === 'approved' ? 'อนุมัติแล้ว ✅' : last.status === 'pending' ? 'รอตรวจสอบ ⏳' : 'ปฏิเสธ ❌';
-                reply = `รายการจองล่าสุดของคุณ:\nหน่วยงาน: ${last.organization}\nวันที่: ${formatThaiDate(new Date(last.date))}\nสถานะ: ${statusTh}`;
-            }
-        }
-        buttons = ['เช็ควันว่าง'];
-    }
-		  else if (text.includes('สถานะ') || text.includes('งานของฉัน')) {
+    else if (text.includes('สถานะ') || text.includes('การจองของฉัน')) {
         if (!currentUser) {
             reply = "กรุณาเข้าสู่ระบบก่อนเพื่อเช็คสถานะการจองของคุณครับ";
         } else {
@@ -888,13 +876,35 @@ function appendMessage(sender, text) {
 
 function renderQuickReplies(buttons) {
     const container = document.getElementById('quickReplies');
-    container.innerHTML = buttons.map(b => `<button onclick="sendMessage('${b}')" class="px-3 py-1.5 border border-sky-200 text-sky-600 rounded-full text-xs hover:bg-sky-50 transition font-medium">${b}</button>`).join('');
+    if (!container) return;
+    
+    container.innerHTML = buttons.map(btn => `
+        <button onclick="sendMessage('${btn}')" 
+                class="px-3 py-1.5 border border-sky-200 text-sky-600 rounded-full text-[11px] sm:text-xs hover:bg-sky-50 transition font-medium shadow-sm bg-white">
+            ${btn}
+        </button>
+    `).join('');
 }
 
 function botGreeting() {
-    const greeting = systemSettings.botGreeting || botSettings.greeting;
-    appendMessage('bot', greeting);
-    renderQuickReplies(['เช็ควันว่าง', 'จองยังไง?', 'สถานะการจอง']);
+    // 1. ดึงข้อความทักทายจาก Settings (ถ้าไม่มีให้ใช้ข้อความเริ่มต้น)
+    const welcomeMsg = systemSettings.botGreeting || "สวัสดีครับ ผม 'น้องแอร์พอร์ต' ยินดีให้บริการข้อมูลการจองวันทัศนศึกษาครับ มีอะไรให้ผมช่วยไหมครับ?";
+    
+    // 2. แสดงข้อความบอท
+    appendMessage('bot', welcomeMsg);
+
+    // 3. สร้างปุ่มตัวเลือกเริ่มต้น (Quick Replies)
+    const initialButtons = [
+        'เปิดวันไหนบ้าง?', 
+        'จองยังไง?', 
+        'สถานะการจอง', 
+        'กี่คนสูงสุด?',
+		'เวลาเข้าชม?',
+		'จองล่วงหน้า?',
+		'วันไหนว่าง?',
+        'ติดต่อแอดมิน'
+    ];
+    renderQuickReplies(initialButtons);
 }
 
 function showBotGreeting(text) {
